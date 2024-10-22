@@ -1,9 +1,9 @@
-import { combinedReducers } from 'redux'
+import { combineReducers } from 'redux'
 
 import todosReducer from './features/todos/todoSlice'
 import filtersReducer from './features/filters/filterSlice'
 
-const rootReducer = combinedReducers({
+const rootReducer = combineReducers({
   todos: todosReducer,
   filters: filtersReducer,
 })

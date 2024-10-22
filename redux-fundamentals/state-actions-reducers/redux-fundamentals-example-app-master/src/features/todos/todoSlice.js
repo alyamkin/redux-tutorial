@@ -9,7 +9,7 @@ function nextTodoId(todos) {
   return maxId + 1
 }
 
-export default function todosReducer(state = initialState, action) {
+export default function todosReducer(state = [], action) {
   const { type, payload } = action
 
   switch (type) {
@@ -17,13 +17,13 @@ export default function todosReducer(state = initialState, action) {
       return [
         ...state,
         {
-          id: nextTodoId(state.todos),
+          id: nextTodoId(state),
           text: payload,
           completed: false,
         },
       ]
     }
-    case 'tdos/todoToggled': {
+    case 'todos/todoToggled': {
       return state.map((todo) => {
         if (todo.id === payload) {
           return { ...todo, completed: !todo.completed }

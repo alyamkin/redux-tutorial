@@ -19,18 +19,20 @@ export default function filtersReducer(state = initialState, action) {
       switch (changeType) {
         case 'added': {
           if (state.colors.includes(color)) {
-            return state;
+            return state
           }
 
           return {
             ...state,
-            colors: state.colors.concat(color);
+            colors: state.colors.concat(color),
           }
         }
         case 'removed': {
           return {
             ...state,
-            colors: state.colors.filter(existingColor => existingColor !== color)
+            colors: state.colors.filter(
+              (existingColor) => existingColor !== color
+            ),
           }
         }
         default:
