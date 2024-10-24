@@ -1,9 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 
-import './api/server'
+import './index.css';
+import App from './App';
+import store from './store';
+
+import './api/server';
 
 // import store from './store'
 // console.log('Initial state: ', store.getState())
@@ -45,9 +48,11 @@ import './api/server'
 // store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
 // store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions2' })
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-)
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);
