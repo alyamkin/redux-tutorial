@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import store from './store';
+import { fetchTodos } from './features/todos/todoSlice';
 
 import './api/server';
 
@@ -48,7 +49,11 @@ import './api/server';
 // store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions' })
 // store.dispatch({ type: 'todos/todoAdded', payload: 'Learn about actions2' })
 
+// store.dispatch({ type: 'todos/fetchTodos' });
+store.dispatch(fetchTodos());
+
 const root = createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>

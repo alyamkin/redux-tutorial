@@ -4,10 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as TimesSolid } from './times-solid.svg';
 
 import { availableColors, capitalize } from '../filters/colors';
-
-const selectTodoById = (state, todoId) => {
-  return state.todos.find((todo) => todo.id === todoId);
-};
+import {
+  selectTodoById,
+  todoToggled,
+  colorSelected,
+  todoDeleted,
+} from '../todos/todoSlice';
 
 const TodoListItem = ({ id }) => {
   const todo = useSelector((state) => selectTodoById(state, id));
@@ -16,18 +18,15 @@ const TodoListItem = ({ id }) => {
   const dispatch = useDispatch();
 
   const handleCompletedChanged = (e) => {
-    dispatch({ type: 'todos/todoToggled', payload: todo.id });
+    dispatch(todoToggled(todo.id));
   };
 
   const handColorChanged = (e) => {
-    dispatch({
-      type: 'todos/colorSelected',
-      payload: { color: e.target.value, todoId: todo.id },
-    });
+    dispatch(colorSelected(e.target.value, todo.id));
   };
 
   const handleDelete = () => {
-    dispatch({ type: 'todos/todoDeleted', payload: todo.id });
+    dispatch(todoDeleted(todo.id));
   };
 
   const colorOptions = availableColors.map((c) => {

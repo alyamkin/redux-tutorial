@@ -1,37 +1,23 @@
 import React from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 import TodoListItem from './TodoListItem';
-
-const todoStatusText = {
-  true: 'completed',
-  false: 'active',
-};
-
-const filterTodo = (todos, filters) =>
-  todos.filter((todo) => {
-    const filterColorHasDefaultState = filters.colors.length === 0;
-    const filterStatusHasDefaultState = filters.status === 'all';
-    const filteredByColor =
-      filterColorHasDefaultState || filters.colors.includes(todo.color);
-    const filteredByStatus =
-      filterStatusHasDefaultState ||
-      filters.status === todoStatusText[todo.completed];
-
-    return filteredByColor && filteredByStatus;
-  });
-
-const selectTodoIds = (state) => {
-  const { todos, filters } = state;
-
-  return filterTodo(todos, filters).map((todo) => todo.id);
-};
+import { selectFilteredTodoIds, selectLoadingStatus } from './todoSlice';
 
 const TodoList = () => {
-  const todoIds = useSelector(selectTodoIds, shallowEqual);
+  const todoIds = useSelector(selectFilteredTodoIds);
+  const loadingStatus = useSelector(selectLoadingStatus);
 
   const renderedListItems = todoIds.map((todoId) => (
     <TodoListItem key={todoId} id={todoId} />
   ));
+
+  if (loadingStatus === 'loading') {
+    return (
+      <div className="todo-list">
+        <div className="loader" />
+      </div>
+    );
+  }
 
   return <ul className="todo-list">{renderedListItems}</ul>;
 };
