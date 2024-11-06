@@ -8,10 +8,10 @@ import {
   statusFilterChanged,
 } from '../filters/filtersSlice';
 import {
-  allCompleted,
-  completedCleared,
+  allTodosCompleted,
+  completedTodosCleared,
   selectTodos,
-} from '../todos/todoSlice';
+} from '../todos/todosSlice';
 
 const RemainingTodos = ({ count }) => {
   const suffix = count === 1 ? '' : 's';
@@ -99,9 +99,9 @@ const Footer = () => {
 
   const onStatusChange = (status) => dispatch(statusFilterChanged(status));
 
-  const onCompleteAll = () => dispatch(allCompleted());
+  const onCompleteAll = () => dispatch(allTodosCompleted());
 
-  const onClearAll = () => dispatch(completedCleared());
+  const onClearAll = () => dispatch(completedTodosCleared());
 
   return (
     <footer className="footer">

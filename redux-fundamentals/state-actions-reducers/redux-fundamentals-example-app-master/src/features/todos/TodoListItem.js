@@ -7,9 +7,9 @@ import { availableColors, capitalize } from '../filters/colors';
 import {
   selectTodoById,
   todoToggled,
-  colorSelected,
+  todoColorSelected,
   todoDeleted,
-} from '../todos/todoSlice';
+} from './todosSlice';
 
 const TodoListItem = ({ id }) => {
   const todo = useSelector((state) => selectTodoById(state, id));
@@ -22,7 +22,7 @@ const TodoListItem = ({ id }) => {
   };
 
   const handColorChanged = (e) => {
-    dispatch(colorSelected(e.target.value, todo.id));
+    dispatch(todoColorSelected(e.target.value, todo.id));
   };
 
   const handleDelete = () => {

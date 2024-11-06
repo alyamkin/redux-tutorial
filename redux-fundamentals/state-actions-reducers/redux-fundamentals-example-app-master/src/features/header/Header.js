@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { saveNewTodo } from '../todos/todoSlice';
+import { saveNewTodo } from '../todos/todosSlice';
 
 const Header = () => {
   const [text, setText] = useState('');
@@ -27,7 +27,7 @@ const Header = () => {
     <header className="header">
       <input
         className="new-todo"
-        placeholder="What needs to be done?"
+        placeholder={placeholder}
         value={text}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
 import TodoListItem from './TodoListItem';
-import { selectFilteredTodoIds, selectLoadingStatus } from './todoSlice';
+import { selectFilteredTodoIds, selectLoadingStatus } from './todosSlice';
 
 const TodoList = () => {
   const todoIds = useSelector(selectFilteredTodoIds);
